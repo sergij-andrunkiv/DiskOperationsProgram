@@ -2,8 +2,9 @@
 
 default: build run
 build:
-	rm -r ../Binaries
-	mkdir ../Binaries
+	if [ ! -d "../Binaries" ]; then \
+  		mkdir ../Binaries; \
+	fi
 	fasm main.asm main.o
 	gcc main.o -o ../Binaries/StorageDevicesOperations.run
 	objdump -S -M intel -d ../Binaries/StorageDevicesOperations.run > obj.dump
